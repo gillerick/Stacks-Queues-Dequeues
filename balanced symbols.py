@@ -1,5 +1,6 @@
 class Stack:
     """Stacks abstract lists. Therefore, behind a stack is a python list object"""
+
     def __init__(self):
         self.items = []
 
@@ -27,6 +28,7 @@ class Stack:
             return None
 
     """See the last item that is going to be removed"""
+
     def peek(self):
         """Shows us the item that is on top of the stack
         Runs in O(1)"""
@@ -46,11 +48,34 @@ class Stack:
         return self.items == []
 
 
-if __name__ == "__main__":
-    s = Stack()
-    print(s.is_empty())
-    # print(s.peek())
-    # s.push('apple')
-    # s.push('banana')
-    # print(s)
-    # print(s)
+string = "{[()]}"
+symbols = {"{": "}", "[": "]", "(": ")"}
+openers = symbols.keys()
+s = Stack()
+
+
+def balance_check(string):
+    if len(string) % 2 != 0:
+        return False
+    if len(string) == 0:
+        return True
+    index = 0
+    while index < len(string):
+        symbol = symbols[index]
+
+        if symbol in openers:
+            s.push(symbol)
+        else:
+            if s.is_empty():
+                return False
+
+            else:
+                top_item = s.pop()
+                if symbol != symbols[top_item]:
+                    return False
+        index += 1
+    if s.is_empty():
+        return True
+    return False
+
+
