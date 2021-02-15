@@ -33,4 +33,6 @@ def check_palindrome(input_str):
 
         return True
 
+
 print(check_palindrome('racecar'))
+print(check_palindrome('oranges'))
